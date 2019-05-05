@@ -1,0 +1,54 @@
+{% url 'intray:add' as add_url %}
+{% url 'intray:process' as process_url %}
+{% url 'intray:archive' as archive_url %}
+{% url 'intray:logout' as logout_url %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="{% static 'intray/semantic/semantic.min.css' %}">
+        <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous">
+        </script>
+        <script src="{% static 'intray/semantic/semantic.min.js' %}"></script>
+        <title>Intray</title>
+    </head>
+    <body>
+
+        <div class="ui large menu">
+            <div class="ui container">
+                <a class="header item"
+                   href="{{ add_url }}">
+                    Intray
+                </a>
+                <a class="item {% if request.get_full_path == add_url %} active {% endif %}"
+                   href="{{ add_url }}">
+                    Add item
+                </a>
+                <a class="item {% if request.get_full_path == process_url %} active {% endif %}"
+                   href="{{ process_url }}">
+                    Process
+                </a>
+                <a class="item {% if request.get_full_path == archive_url %} active {% endif %}"
+                   href="{{ archive_url }}">
+                    Archive
+                </a>
+                {% if request.user.is_authenticated %}
+                <div class="right menu">
+                    <a class="header item" href="{{ logout_url }}">
+                        Logout
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="ui main container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

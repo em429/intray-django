@@ -1,0 +1,28 @@
+{% extends 'intray/base.html' %}
+
+{% block content %}
+    <h1>Process</h1>
+
+    <div class="ui segment">
+        {% if oldest_item %}
+
+            <h1>{{ item_count }} items left.</h1>
+            <p>{{ oldest_item.timestamp }}</p>
+            <p>{{ oldest_item.item_text }}</p>
+
+            <form class="ui form" action="{% url 'intray:process' %}" method="post">
+                {% csrf_token %}
+                <!-- Replace hidden input with API call when ready -->
+                <input type="hidden"
+                       name="item_uuid"
+                       value="{{oldest_item.item_uuid}}"
+                >
+                <button class="ui button" type="submit">Done</button>
+            </form>
+
+        {% else %}
+            <h1>Intray is empty!</h1>
+        {% endif %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'intray/base.html' %}
+
+{% block content %}
+    <h1>Archive</h1>
+    <div class="ui middle aligned selection list">
+        {% for item in archived_items %}
+            <div class="item">
+                <div class="content">
+                    <a href="{% url 'intray:archived_item' item.item_uuid %}"
+                       class="header">{{ item }}</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

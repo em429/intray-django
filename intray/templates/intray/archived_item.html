@@ -1,0 +1,13 @@
+{% extends 'intray/base.html' %}
+
+{% block content %}
+    <h1>{{ item.timestamp }}</h1>
+    <div class="ui segments">
+        <div class="ui segment secondary">
+            <p>{{ item.item_uuid }}</p>
+        </div>
+        <div class="ui segment">
+        <p>{{ item.item_text }}</p>
+        </div>
+    </div>
+{% endblock %}
