@@ -39,7 +39,7 @@ Allow me to quote from the original version's
 
 You can add a new item with just 3 taps/clicks.
 
-> Click/tap the Intray icon on the launcher
-> Click/tap 'log in' (with a saved password)
-> Click/tap the 'add item' text area.
-> Start typing
+> - Click/tap the Intray icon on the launcher
+> - Click/tap 'log in' (with a saved password)
+> - Click/tap the 'add item' text area.
+> - Start typing
