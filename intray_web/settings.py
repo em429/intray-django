@@ -86,7 +86,7 @@ WSGI_APPLICATION = "intray_web.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, os.environ.get("DB_NAME")),
+        "NAME": os.environ.get("DB_NAME"),
     }
 }
 
