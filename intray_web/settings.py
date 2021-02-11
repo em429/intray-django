@@ -14,13 +14,7 @@ import os
 
 from django.core.exceptions import ImproperlyConfigured
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 def env_var(key, default=None):
     """Retrieves env vars and makes Python boolean replacements"""
     val = os.environ.get(key, default)
@@ -31,11 +25,16 @@ def env_var(key, default=None):
     return val
 
 
-# SECURITY WARNING: don't run with debug turned on in production!
+LOGIN_URL = "intray:login"
+LOGIN_REDIRECT_URL = "intray:process"
+LOGOUT_REDIRECT_URL = "intray:index"
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 DEBUG = env_var("DEBUG", False)
-ALLOWED_HOSTS = list(os.environ.get("ALLOWED_HOSTS", default="").split(","))
-SECRET_KEY = os.environ.get("SECRET_KEY")
-STATIC_ROOT = os.environ.get("STATIC_ROOT")
+
+SECRET_KEY = env_var("SECRET_KEY", "")
 
 # Application definition
 
@@ -57,9 +56,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 ROOT_URLCONF = "intray_web.urls"
 
@@ -81,21 +78,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "intray_web.wsgi.application"
 
-
 # Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'HOST': '',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
-
-LOGIN_URL = "intray:login"
-LOGIN_REDIRECT_URL = "intray:process"
-LOGOUT_REDIRECT_URL = "intray:index"
 
 
 # Password validation
