@@ -8,7 +8,7 @@ from .models import Item
 
 
 # def index(request):
-def index():
+def index(request):
     return HttpResponseRedirect("/add")
 
 
