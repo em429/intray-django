@@ -57,7 +57,9 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 ROOT_URLCONF = "intray_web.urls"
 
@@ -84,9 +86,10 @@ WSGI_APPLICATION = "intray_web.wsgi.application"
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.environ.get("DB_NAME"),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': environ.get('DB_NAME'),
+        'HOST': '',
     }
 }
 
